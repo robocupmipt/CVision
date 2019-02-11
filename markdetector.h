@@ -6,6 +6,5 @@
 class MarkDetector : public BaseDetector {
  public:
   AL::ALValue Detect(cv::InputArray image);
-
  private:
 };

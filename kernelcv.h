@@ -16,12 +16,15 @@ class KernelCV {
   KernelCV(boost::shared_ptr<AL::ALBroker> broker_);
 
  private:
-  void ReadImages();
+  /* return an image from lower camera if cam_num eq 0
+   * and return from upper camera otherwise
+   */
+  cv::Mat GetImageFromCamera(size_t cam_num);
 
  private:
   AL::ALVideoDeviceProxy camera_proxy_;
-  std::string first_camera_client_;
-  std::string second_camera_client_;
+  std::string lower_camera_client_;
+  std::string upper_camera_client_;
 
   BallDetector ball_d_;
   MarkDetector mark_d_;

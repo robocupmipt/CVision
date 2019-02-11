@@ -1,11 +1,11 @@
 #pragma once
 
-#include "kernalcv.h"
+#include "kernelcv.h"
 
 
 class RemoteVision : public AL::ALModule {
  public:
-  RemoteVision(boost::shared_ptr<AL::ALBroker> pBroker, const std::string& pName);
+  RemoteVision(boost::shared_ptr<AL::ALBroker> broker, const std::string& name);
 
   void virtual init();
 

@@ -1,12 +1,11 @@
-#include "kernalcv.h"
+#include "kernelcv.h"
 
 KernelCV::KernelCV(boost::shared_ptr <ALBroker> broker_) : camera_proxy_(broker_) {
-
+  lower_camera_client_ = camera_proxy_.subscribe(LOWER_CAMERA.name, AL::kVGA, AL::kRGBColorSpace, 30);
+  upper_camera_client_ = camera_proxy_.subscribe(UPPER_CAMERA.name, AL::kVGA, AL::kRGBColorSpace, 30);
 }
 
 void KernelCV::ReadImages() {
-  first_camera_client_ = camera_proxy_.subscribe(UPPER_CAMERA.name, AL::kVGA, AL::kRGBColorSpace, 30);
-  second_camera_client_ = camera_proxy_.subscribe(LOWER_CAMERA.name, AL::kVGA, AL::kRGBColorSpace, 30);
   AL::ALValue al_img;
 
   while (true) {
@@ -22,5 +21,12 @@ void KernelCV::ReadImages() {
 
 
   }
+}
+
+
+cv::Mat KernelCV::GetImageFromCamera(size_t cam_num) {
+  std::string camera_client = cam_num ? upper_camera_client_ : lower_camera_client_;
+
+
 }
 

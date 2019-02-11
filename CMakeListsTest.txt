@@ -10,12 +10,11 @@ find_package(qibuild)
 
 # Create a list of source files
 set(_srcs
-        moveparams.cpp
-        vertex.cpp
-        edge.cpp
-        primalgraph.cpp
-        kernelgraph.cpp
-        graphcreator.cpp
+        basedetector.cpp,
+        balldetector.cpp,
+        markdetector.cpp,
+        kernelcv.cpp,
+        remotevision.cpp,
         main.cpp
         )
 
@@ -32,4 +31,4 @@ qi_create_bin(cvision ${_srcs})
 # ALPROXIES.
 # This will set the libraries to link sayhelloworld with,
 # the include paths, and so on
-qi_use_lib(cvision ALCOMMON ALPROXIES OPENCV3)
+qi_use_lib(cvision ALCOMMON ALPROXIES OPENCV3_CORE OPENCV3_VIDEOIO)

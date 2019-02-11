@@ -10,22 +10,25 @@ find_package(qibuild)
 
 # Create a list of source files
 set(_srcs
-        moveparams.cpp
-        vertex.cpp
-        edge.cpp
-        primalgraph.cpp
-        kernelgraph.cpp
-        movementgraph.cpp
+        basedetector.cpp,
+        balldetector.cpp,
+        markdetector.cpp,
+        kernelcv.cpp,
+        remotevision.cpp,
         main.cpp
         )
 
-# Create a plugin, that is a shared library, and make
-# sure it is built in lib/naoqi, so that the naoqi executable
-# can find it later
-qi_create_lib(cvision SHARED ${_srcs} SUBFOLDER naoqi)
+# Add a compile flag because code changes a little bit
+# when we are compiling an executable
+# This will let you use #ifdef HELLOWORLD_IS_REMOTE
+# in the C++ code
+add_definitions( " -DCVISION_IS_REMOTE ")
+
+# Create an executable
+qi_create_bin(movementgraph SHARED ${_srcs} SUBFOLDER naoqi)
 
 # Tell CMake that sayhelloworld depends on ALCOMMON and
 # ALPROXIES.
 # This will set the libraries to link sayhelloworld with,
 # the include paths, and so on
-qi_use_lib(cvision ALCOMMON ALPROXIES OPENCV3)
+qi_use_lib(cvision ALCOMMON ALPROXIES OPENCV3_CORE OPENCV3_VIDEOIO)

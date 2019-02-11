@@ -1,17 +1,11 @@
 #pragma once
 
-#include "kernalcv.h"
+#include "kernelcv.h"
 
 
 class CVision: public AL::ALModule {
  public:
-  CVision(boost::shared_ptr<AL::ALBroker> pBroker, const std::string& pName);
-
-  AL::ALValue GetBall();
-
-  AL::ALValue GetLines();
-
-  AL::ALValue GetGate();
+  CVision(boost::shared_ptr<AL::ALBroker> broker, const std::string& name);
 
  private:
   KernelCV kernel_;
