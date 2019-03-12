@@ -1,5 +1,8 @@
+#pragma once
 #include "markdetector.h"
 
-AL::ALValue MarkDetector::Detect(cv::InputArray image) {
+MarkDetector::MarkDetector(const CameraConfig &cfg) : config_(cfg) {}
+
+AL::ALValue MarkDetector::Detect(cv::Mat image) {
   return 0;
 }

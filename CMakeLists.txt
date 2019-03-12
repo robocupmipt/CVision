@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 2.6.4 FATAL_ERROR)
 
 # Define the name of the project
-project(cvision)
+project(remotevision)
 
 # This include enable you to use qibuild framework
 find_package(qibuild)
@@ -10,11 +10,10 @@ find_package(qibuild)
 
 # Create a list of source files
 set(_srcs
-        basedetector.cpp,
-        balldetector.cpp,
-        markdetector.cpp,
-        kernelcv.cpp,
-        remotevision.cpp,
+        balldetector.cpp
+        markdetector.cpp
+        kernelcv.cpp
+        remotevision.cpp
         main.cpp
         )
 
@@ -25,10 +24,10 @@ set(_srcs
 add_definitions( " -DCVISION_IS_REMOTE ")
 
 # Create an executable
-qi_create_bin(movementgraph SHARED ${_srcs} SUBFOLDER naoqi)
+qi_create_bin(remotevision ${_srcs})
 
 # Tell CMake that sayhelloworld depends on ALCOMMON and
 # ALPROXIES.
 # This will set the libraries to link sayhelloworld with,
 # the include paths, and so on
-qi_use_lib(cvision ALCOMMON ALPROXIES OPENCV3_CORE OPENCV3_VIDEOIO)
+qi_use_lib(remotevision ALCOMMON ALPROXIES ALVISION OPENCV3_CORE OPENCV3_IMGCODECS OPENCV3_HIGHGUI)

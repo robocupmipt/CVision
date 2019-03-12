@@ -1,10 +1,13 @@
-#include "opencv2/core.hpp"
-#include "opencv2/objdetect.hpp"
-#include "basedetector.h"
+#pragma once
+#include "config.h"
 
 
-class MarkDetector : public BaseDetector {
+class MarkDetector {
  public:
-  AL::ALValue Detect(cv::InputArray image);
+  MarkDetector(const CameraConfig& cfg);
+
+  AL::ALValue Detect(cv::Mat image);
+
  private:
+  CameraConfig config_;
 };

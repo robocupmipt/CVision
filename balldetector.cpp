@@ -1,5 +1,8 @@
+#pragma once
 #include "balldetector.h"
 
-AL::ALValue BallDetector::Detect(cv::InputArray image) {
+BallDetector::BallDetector(const CameraConfig &cfg) : config_(cfg) {}
+
+AL::ALValue BallDetector::Detect(cv::Mat image) {
   return 0;
 }

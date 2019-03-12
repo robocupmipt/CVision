@@ -22,4 +22,4 @@ make_test: compil_for_testing run
 make_lib: compil_for_robot
 
 run:
-	./build-$(CONFIG_NAME_FOR_TESTING)/sdk/bin/graphcreator --pip ${IP}
+	./build-$(CONFIG_NAME_FOR_TESTING)/sdk/bin/remotevision --pip ${IP}

@@ -1,11 +1,13 @@
-#include "opencv2/core.hpp"
-#include "opencv2/objdetect.hpp"
-#include "basedetector.h"
+#pragma once
+#include "config.h"
 
 
-class BallDetector : public BaseDetector {
+class BallDetector {
  public:
-  AL::ALValue Detect(cv::InputArray image);
+  BallDetector(const CameraConfig& cfg);
+
+  AL::ALValue Detect(cv::Mat image);
 
  private:
+  CameraConfig config_;
 };
