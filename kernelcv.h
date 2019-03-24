@@ -24,12 +24,12 @@ class KernelCV {
   void PrintImageToFile(const cv::Mat& img, const std::string& filename);
 
  private:
-
+  void SubscribeCamera(CameraConfig& cfg);
 
  private:
   AL::ALVideoDeviceProxy camera_proxy_;
-  std::string lower_camera_client_;
-  std::string upper_camera_client_;
+  CameraConfig upper_camera_;
+  CameraConfig lower_camera_;
 
   BallDetector ball_up_detector_;
   BallDetector ball_down_detector_;
