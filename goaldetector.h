@@ -1,6 +1,6 @@
 #include "config.h"
 
-class BaseDetector {
+class GoalDetector {
  public:
   BaseDetector(const CameraConfig& cfg);
 

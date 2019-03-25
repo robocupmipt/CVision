@@ -9,5 +9,9 @@ class BallDetector {
   AL::ALValue Detect(cv::Mat image);
 
  private:
-  CameraConfig config_;
+  AL::ALValue Rect2ALValue(const cv::Rect& ball);
+
+ private:
+  const CameraConfig config_;
+  std::vector <cv::CascadeClassifier> ball_finders_;
 };

@@ -30,4 +30,4 @@ qi_create_bin(remotevision ${_srcs})
 # ALPROXIES.
 # This will set the libraries to link sayhelloworld with,
 # the include paths, and so on
-qi_use_lib(remotevision ALCOMMON ALPROXIES ALVISION OPENCV3_CORE OPENCV3_IMGCODECS OPENCV3_HIGHGUI)
+qi_use_lib(remotevision ALCOMMON ALPROXIES ALVISION OPENCV3_CORE OPENCV3_HIGHGUI OPENCV3_IMGCODECS OPENCV3_IMGPROC OPENCV3_OBJDETECT )
