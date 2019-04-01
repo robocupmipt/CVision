@@ -12,6 +12,8 @@ find_package(qibuild)
 set(_srcs
         balldetector.cpp
         markdetector.cpp
+        goaldetector.cpp
+        cameraholder.cpp
         kernelcv.cpp
         remotevision.cpp
         main.cpp

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.9)
+set(CMAKE_CXX_STANDARD 14)
+project(OpenCVtest)
+find_package( OpenCV REQUIRED )
+add_executable( OpenCVtest main.cpp )
+target_link_libraries( OpenCVtest ${OpenCV_LIBS} )

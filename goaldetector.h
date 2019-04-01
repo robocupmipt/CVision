@@ -2,9 +2,9 @@
 
 class GoalDetector {
  public:
-  BaseDetector(const CameraConfig& cfg);
+  GoalDetector(const CameraConfig& cfg);
 
-  virtual AL::ALValue Detect(cv::InputArray image);
+  AL::ALValue Detect(cv::InputArray image);
 
   CameraConfig config_;
 };

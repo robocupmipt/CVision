@@ -2,36 +2,56 @@
 #include "balldetector.h"
 #include "configdefinitions.h"
 
-BallDetector::BallDetector(const CameraConfig &cfg) : config_(cfg) {std::vector <std::string> BALL_FINDER_FILES({"data/bottom_cascade.xml", "other_cascade.xml", "top_cascade.xml"});
-  for (auto path : BALL_FINDER_FILES) {
+
+BallDetector::BallDetector(const CameraConfig& cfg) : cfg_(cfg) {
+  std::cout << "DEBUG: \n \t cascade paths num " <<  cfg_.cascades.size();
+  std::cout << std::endl;
+  for (auto path : cfg_.cascades) {
     cv::CascadeClassifier curr_finder;
-    assert(curr_finder.load(path));
+    curr_finder.load(path);
 
     ball_finders_.push_back(curr_finder);
   }
 }
 
-AL::ALValue BallDetector::Detect(cv::Mat image) {AL::ALValue res;
+std::vector<cv::Rect> BallDetector::Detect(const cv::Mat& image) {
+  std::vector<cv::Rect> res;
+
+  cv::Mat gray_img;
+  cv::cvtColor(image, gray_img, cv::COLOR_BGR2GRAY);
 
   for (auto& finder : ball_finders_) {
     std::vector<cv::Rect> curr_balls;
-    finder.detectMultiScale(image, curr_balls);
+
+    finder.detectMultiScale(gray_img, curr_balls);
+
+    cv::Rect max_ball;
+    int max_h = 0;
     for (auto& ball : curr_balls) {
-      res.arrayPush(Rect2ALValue(ball));
+      if (ball.height > max_h) {
+        max_ball = ball;
+        max_h = ball.height;
+      }
+
     }
+
+    res.push_back(max_ball);
   }
 
-  return AL::ALValue(res);
+  return res;
 }
 
 
-/********* PRIVATE SPACE *********/
+/*------- PRIVAT SPACE ---------*/
 
+cv::Mat BallDetector::ToGray(const cv::Mat& img) const {
+  cv::Mat gray_img;
+  cv::cvtColor(img, gray_img, cv::COLOR_RGB2GRAY);
 
-AL::ALValue BallDetector::Rect2ALValue(const cv::Rect& ball) {
-  float x = ball.x;
-  float y = ball.y;
-  float h = ball.height;
-  float w = ball.width;
-  return AL::ALValue::array(x + w / 2, y + h / 2, (w + h) / 4);
+  for (int i = 0; i < gray_img.rows; ++i) {
+    for (int j = 0; j < gray_img.cols; ++j) {
+      gray_img.at<double>(i, j) = 0;
+    }
+  }
+  return gray_img;
 }
