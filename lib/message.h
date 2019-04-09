@@ -109,10 +109,11 @@ bool Message<SendTemplate, ReceiveTemplate>::SendMessage(SendTemplate& message)
 
   std::cout << "type " << message.type << std::endl;
   std::cout << "size " << sizeof(SendTemplate) << std::endl;
-  int result = msgsnd(msgid_, (struct msgbuf *)&message, sizeof(SendTemplate), 0);
-  std::cout << "1\n";
+  int result = msgsnd(msgid_, (struct msgbuf *)&message, sizeof(SendTemplate), IPC_NOWAIT);
+  if(errno == EAGAIN)
+    std::cout << "EAGAIN ERROR\n";
+
   MESSAGE_CHECK("msgsnd", result);
-  std::cout << "1\n";
 }
 
 template<typename SendTemplate, typename ReceiveTemplate>
