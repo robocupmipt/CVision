@@ -12,8 +12,9 @@ void RemoteVision::init() {
     if (command == "B_D") {
       DetectBall();
 
-      kernel_.message_.Write(1, 2);
-      kernel_.message_.SendMessage;
+      message::Send buf;
+      buf.Write(1, 2);
+      kernel_.message_.SendMessage(buf);
     }
   }
 }
