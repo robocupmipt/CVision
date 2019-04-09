@@ -16,7 +16,7 @@ class CameraHolder {
  public:
   CameraHolder(const CameraConfig& cfg, boost::shared_ptr<AL::ALBroker> broker_);
 
-  void DetectBall(bool use_debug=false);
+  AL::ALValue DetectBalls(bool use_debug=false);
 
  private:
   void SubscribeCamera();

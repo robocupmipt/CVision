@@ -11,5 +11,5 @@ KernelCV::KernelCV(boost::shared_ptr <AL::ALBroker> broker_) :
 }
 
 void KernelCV::DetectBall(size_t camera_index, bool use_debug) {
-  cameras_[camera_index].DetectBall(use_debug);
+  cameras_[camera_index].DetectBalls(use_debug);
 }

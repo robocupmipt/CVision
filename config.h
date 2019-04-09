@@ -45,4 +45,10 @@ struct CameraConfig {
   std::string camera_client;
   cv::Size resolution_size;
 
+  float h_rotate_angle;
+  float w_rotate_angle;
+
+  float h_neck;
+  float h_from_neck_to_camera;
+  float y_to_camera;
 };
