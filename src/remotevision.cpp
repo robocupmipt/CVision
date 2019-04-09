@@ -7,24 +7,17 @@ RemoteVision::RemoteVision(boost::shared_ptr <AL::ALBroker> broker, const std::s
     kernel_(broker) {}
 
 void RemoteVision::init() {
-  while (true) {
-    std::string command(SmallLog("ENTER command", 1, true));
-    if (command == "B_D") {
-      DetectBall();
+  kernel_.StartModule();
 
-      message::Send buf;
-      buf.Write(1, 2);
-      kernel_.message_.SendMessage(buf);
-    }
+  while (true) {
   }
 }
-
 
 void RemoteVision::DetectBall() {
   SmallLog("Now you cant detect ball", 2);
 
   int cam_num(SmallLog<int>("ENTER: camera index (0 for lower, 1 for upper):", 3, true));
-  kernel_.DetectBall(cam_num, true);
+  kernel_.DetectBalls();
 }
 
 template <typename T>

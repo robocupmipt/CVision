@@ -13,13 +13,13 @@
  *
  */
 
-#include<sys/msg.h>
-#include<errno.h>
-#include<stdio.h> 
-#include"Custom.h"
+#include <sys/msg.h>
+#include <errno.h>
+#include <stdio.h>
 
-namespace message
-{
+#include "custom.h"
+
+namespace message {
 
 #define PERMISSION 0777
 #define KEY_NUMBER 70000
@@ -37,8 +37,7 @@ do {								\
 
 // struct of message, that uses in msgrcv, msgsnd (Linux calls)
 template<typename T>
-struct MessageType
-{
+struct MessageType {
   long type;
 
   T data;
@@ -46,8 +45,7 @@ struct MessageType
 
 // The main class
 template<typename SendTemplate, typename ReceiveTemplate>
-class Message
-{
+class Message {
   public:
   Message(int sendType, int receiveType);
 
@@ -74,6 +72,7 @@ Message<SendTemplate, ReceiveTemplate>::Message(int sendType, int receiveType)
   SetMessageTypes(sendType, receiveType);
   InitMsg();
 }
+
 template<typename SendTemplate, typename ReceiveTemplate>
 bool Message<SendTemplate, ReceiveTemplate>::SetMessageTypes(int sendType, int receiveType)
 {
@@ -103,7 +102,7 @@ bool Message<SendTemplate, ReceiveTemplate>::InitMsg()
 }
 
 template<typename SendTemplate, typename ReceiveTemplate>
-bool Message<SendTemplate, ReceiveTemplate>::SendMessage(SendTemplate & message)
+bool Message<SendTemplate, ReceiveTemplate>::SendMessage(SendTemplate& message)
 {
   std::cout << "SendMessage" << std::endl;
   message.type = sendType_;
@@ -111,7 +110,9 @@ bool Message<SendTemplate, ReceiveTemplate>::SendMessage(SendTemplate & message)
   std::cout << "type " << message.type << std::endl;
   std::cout << "size " << sizeof(SendTemplate) << std::endl;
   int result = msgsnd(msgid_, (struct msgbuf *)&message, sizeof(SendTemplate), 0);
+  std::cout << "1\n";
   MESSAGE_CHECK("msgsnd", result);
+  std::cout << "1\n";
 }
 
 template<typename SendTemplate, typename ReceiveTemplate>

@@ -4,8 +4,6 @@
 
 
 BallDetector::BallDetector(const CameraConfig& cfg) : cfg_(cfg) {
-  std::cout << "DEBUG: \n \t cascade paths num " <<  cfg_.cascades.size();
-  std::cout << std::endl;
   for (auto path : cfg_.cascades) {
     cv::CascadeClassifier curr_finder;
     curr_finder.load(path);
@@ -14,8 +12,8 @@ BallDetector::BallDetector(const CameraConfig& cfg) : cfg_(cfg) {
   }
 }
 
-AL::ALValue BallDetector::Detect(const cv::Mat& image) {
-  AL::ALValue res;
+std::vector <Point> BallDetector::Detect(const cv::Mat& image) {
+  std::vector <Point> res;
 
   cv::Mat gray_img;
   cv::cvtColor(image, gray_img, cv::COLOR_BGR2GRAY);
@@ -35,7 +33,7 @@ AL::ALValue BallDetector::Detect(const cv::Mat& image) {
 
     }
 
-    res.arrayPush(Rect2Point(max_ball));
+    res.push_back(Rect2Point(max_ball));
   }
 
   return res;
@@ -45,6 +43,6 @@ AL::ALValue BallDetector::Detect(const cv::Mat& image) {
 /*------- PRIVAT SPACE ---------*/
 
 
-AL::ALValue BallDetector::Rect2Point(const cv::Rect& r) const {
-
+Point BallDetector::Rect2Point(const cv::Rect& r) const {
+  return Point(0, 0);
 }

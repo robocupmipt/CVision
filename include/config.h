@@ -44,11 +44,14 @@ struct CameraConfig {
   const std::vector <std::string> cascades;
   std::string camera_client;
   cv::Size resolution_size;
+};
 
-  float h_rotate_angle;
-  float w_rotate_angle;
 
-  float h_neck;
-  float h_from_neck_to_camera;
+struct CameraPosition {
+  float z_rotate_angle;  // rotate angle around Z axis
+  float x_rotate_angle;  // rotate angle around horizontal line
+
+  float h_neck;  // height to the neck joint
+  float h_camera; //  height from neck joint to camera
   float y_to_camera;
 };

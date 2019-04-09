@@ -10,13 +10,12 @@ find_package(qibuild)
 
 # Create a list of source files
 set(_srcs
-        balldetector.cpp
-        markdetector.cpp
-        goaldetector.cpp
-        cameraholder.cpp
-        kernelcv.cpp
-        remotevision.cpp
-        messenger/Custom.cpp
+        src/balldetector.cpp
+        src/markdetector.cpp
+        src/goaldetector.cpp
+        src/cameraholder.cpp
+        src/kernelcv.cpp
+        src/remotevision.cpp
         main.cpp
         )
 
@@ -33,4 +32,7 @@ qi_create_bin(remotevision ${_srcs})
 # ALPROXIES.
 # This will set the libraries to link sayhelloworld with,
 # the include paths, and so on
+
+target_include_directories(remotevision PUBLIC "include")
+target_include_directories(remotevision PUBLIC "lib")
 qi_use_lib(remotevision ALCOMMON ALPROXIES ALVISION OPENCV3_CORE OPENCV3_HIGHGUI OPENCV3_IMGCODECS OPENCV3_IMGPROC OPENCV3_OBJDETECT )

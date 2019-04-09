@@ -7,7 +7,7 @@ CameraHolder::CameraHolder(const CameraConfig& cfg, boost::shared_ptr<AL::ALBrok
 }
 
 
-AL::ALValue CameraHolder::DetectBalls(bool use_debug) {
+std::vector <Point> CameraHolder::DetectBalls(bool use_debug) {
   UpdateImage();
 
   std::string path = "imgs/" + cfg_.name;

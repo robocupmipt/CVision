@@ -4,6 +4,7 @@
 
 #ifndef __CUSTOM_H__
 #define __CUSTOM_H__
+#include "geometry.h"
 
 /* --------------------- Custom classes ------------------------ */
 
@@ -12,39 +13,27 @@
  * You can change these on your own.
  *
  */
+namespace message {
+
 
 /*
  *
- * Input class for trasnmission
+ * Output class for transmission to Vision
  *
 */
-
-namespace message
-{
-
-class Receive
-{
-  public:
-
+struct Receive {
   float x = 0, y = 0;
 
-  void Write(float x1, float y1);
   void Print();
 };
 
 /*
  *
- * Output class for receiving
+ * Input class for receiving from Vision
  *
 */
-
-class Send
-{
-  public:
-
-  float x = 0, y = 0;
-
-  void Write(float x1, float y1);
+struct Send {
+  Point p;
   void Print();
 };
 
