@@ -7,7 +7,7 @@ CameraHolder::CameraHolder(const CameraConfig& cfg, boost::shared_ptr<AL::ALBrok
 }
 
 
-void CameraHolder::DetectBall(bool use_debug) {
+AL::ALValue CameraHolder::DetectBalls(bool use_debug) {
   UpdateImage();
 
   std::string path = "imgs/" + cfg_.name;
@@ -16,15 +16,7 @@ void CameraHolder::DetectBall(bool use_debug) {
   }
 
   auto balls = b_detect_.Detect(cv::Mat(last_img_.clone()));
-
-  cv::Mat img_with_balls(last_img_.clone());
-  for (auto& ball : balls) {
-    cv::rectangle(img_with_balls, ball, cv::Scalar( 0, 255, 255 ));
-  }
-
-  if (use_debug) {
-    cv::imwrite(path + "(after).jpg", img_with_balls);
-  }
+  return balls;
 }
 
 /********* PRIVATE SPACE *********/

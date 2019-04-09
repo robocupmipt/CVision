@@ -14,8 +14,8 @@ BallDetector::BallDetector(const CameraConfig& cfg) : cfg_(cfg) {
   }
 }
 
-std::vector<cv::Rect> BallDetector::Detect(const cv::Mat& image) {
-  std::vector<cv::Rect> res;
+AL::ALValue BallDetector::Detect(const cv::Mat& image) {
+  AL::ALValue res;
 
   cv::Mat gray_img;
   cv::cvtColor(image, gray_img, cv::COLOR_BGR2GRAY);
@@ -35,7 +35,7 @@ std::vector<cv::Rect> BallDetector::Detect(const cv::Mat& image) {
 
     }
 
-    res.push_back(max_ball);
+    res.arrayPush(Rect2Point(max_ball));
   }
 
   return res;
@@ -44,14 +44,7 @@ std::vector<cv::Rect> BallDetector::Detect(const cv::Mat& image) {
 
 /*------- PRIVAT SPACE ---------*/
 
-cv::Mat BallDetector::ToGray(const cv::Mat& img) const {
-  cv::Mat gray_img;
-  cv::cvtColor(img, gray_img, cv::COLOR_RGB2GRAY);
 
-  for (int i = 0; i < gray_img.rows; ++i) {
-    for (int j = 0; j < gray_img.cols; ++j) {
-      gray_img.at<double>(i, j) = 0;
-    }
-  }
-  return gray_img;
+AL::ALValue BallDetector::Rect2Point(const cv::Rect& r) const {
+
 }

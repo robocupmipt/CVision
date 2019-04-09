@@ -6,10 +6,10 @@ class BallDetector {
  public:
   BallDetector(const CameraConfig& cfg);
 
-  std::vector<cv::Rect> Detect(const cv::Mat& image);
+  AL::ALValue Detect(const cv::Mat& image);
 
  private:
-  cv::Mat ToGray(const cv::Mat& img) const;
+  AL::ALValue Rect2Point(const cv::Rect& r) const;
 
  private:
   const CameraConfig cfg_;
