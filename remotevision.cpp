@@ -11,6 +11,9 @@ void RemoteVision::init() {
     std::string command(SmallLog("ENTER command", 1, true));
     if (command == "B_D") {
       DetectBall();
+
+      kernel_.message_.Write(1, 2);
+      kernel_.message_.SendMessage;
     }
   }
 }

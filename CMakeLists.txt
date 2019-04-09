@@ -16,6 +16,7 @@ set(_srcs
         cameraholder.cpp
         kernelcv.cpp
         remotevision.cpp
+        messenger/Custom.cpp
         main.cpp
         )
 

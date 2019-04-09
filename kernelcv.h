@@ -1,6 +1,11 @@
 #pragma once
 #include "cameraholder.h"
 
+#include"Channels.h"
+#include"Custom.h"
+#include"Message.h"
+
+using namespace message;
 
 class KernelCV {
  public:
@@ -11,4 +16,5 @@ class KernelCV {
  private:
   std::vector <CameraConfig> cfgs_;
   std::vector <CameraHolder> cameras_;
+  Message<MessageType<Send>, MessageType<Receive>> message_;
 };

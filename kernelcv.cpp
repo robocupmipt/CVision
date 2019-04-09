@@ -4,7 +4,7 @@
 
 
 KernelCV::KernelCV(boost::shared_ptr <AL::ALBroker> broker_) :
-    cfgs_({LOWER_CAMERA, UPPER_CAMERA}){
+    cfgs_({LOWER_CAMERA, UPPER_CAMERA}), message_(FROM_VISION_TO_LOCALIZATION, FROM_LOCALIZATION_TO_VISION){
   for (auto cfg : cfgs_) {
     cameras_.push_back(CameraHolder(cfg, broker_));
   }
